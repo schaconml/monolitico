@@ -1,0 +1,14 @@
+{
+    "name": "proyecto/alquiler-vehiculos",
+    "description": "Sistema MVC puro en PHP aplicando POO y SOLID para gestión de alquiler de vehículos",
+    "type": "project",
+    "require": {
+        "php": ">=8.2",
+        "ext-pdo": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}
