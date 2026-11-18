@@ -17,6 +17,7 @@ final class Reservation
         private DateTimeImmutable $startDate,
         private DateTimeImmutable $endDate,
         private ReservationStatus $status = ReservationStatus::Active,
+        private ?DateTimeImmutable $actualReturnDate = null,
         private ?DateTimeImmutable $createdAt = null
     ) {
     }
@@ -55,6 +56,12 @@ final class Reservation
         return $this->status;
     }
 
+    // RF-06: fecha real en que se registró la devolución (null mientras está activa)
+    public function getActualReturnDate(): ?DateTimeImmutable
+    {
+        return $this->actualReturnDate;
+    }
+
     public function getCreatedAt(): ?DateTimeImmutable
     {
         return $this->createdAt;
@@ -78,9 +85,12 @@ final class Reservation
         return $this->status === ReservationStatus::Active;
     }
 
-    public function complete(): void
+    // RF-06: completa la reserva guardando la fecha real de devolución.
+    // RN-06: una reserva completada es terminal, no se reactiva.
+    public function complete(DateTimeImmutable $returnDate): void
     {
         $this->status = ReservationStatus::Completed;
+        $this->actualReturnDate = $returnDate;
     }
 
     public function cancel(): void

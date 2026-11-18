@@ -44,7 +44,8 @@ final class Router
 
 
 
-    // Busca la ruta que coincide y ejecuta el controlador (usa Container para crearlo)
+    // Busca la ruta que coincide y ejecuta el controlador (usa Container para crearlo).
+    // Antes de despachar un POST verifica el token CSRF; si no coincide responde 403.
     public function dispatch(string $method, string $uri): void
     {
         $path = parse_url($uri, PHP_URL_PATH) ?: '/';
@@ -55,27 +56,56 @@ final class Router
 
         $path = '/' . trim($path, '/');
 
+        $coincideRuta = false;
+
         foreach ($this->routes as $ruta) {
+            if (preg_match($ruta['regex'], $path, $coincidencias) !== 1) {
+                continue;
+            }
+
+            $coincideRuta = true;
+
             if ($ruta['method'] !== $method) {
                 continue;
             }
 
-            if (preg_match($ruta['regex'], $path, $coincidencias) === 1) {
-                $params = [];
-                foreach ($coincidencias as $clave => $valor) {
-                    if (is_string($clave)) {
-                        $params[$clave] = $valor;
-                    }
-                }
-
-                [$clase, $accion] = $ruta['handler'];
-                $controlador = $this->container->get($clase);
-                $controlador->{$accion}(...$params);
+            if ($method === 'POST' && !$this->csrfValido()) {
+                http_response_code(403);
+                echo 'Solicitud rechazada: token de seguridad inválido.';
                 return;
             }
+
+            $params = [];
+            foreach ($coincidencias as $clave => $valor) {
+                if (is_string($clave)) {
+                    $params[$clave] = $valor;
+                }
+            }
+
+            [$clase, $accion] = $ruta['handler'];
+            $controlador = $this->container->get($clase);
+            $controlador->{$accion}(...$params);
+            return;
+        }
+
+        if ($coincideRuta) {
+            http_response_code(405);
+            echo 'Método no permitido para esta ruta.';
+            return;
         }
 
         http_response_code(404);
         echo 'Página no encontrada';
+    }
+
+
+
+    // Compara el token del formulario con el guardado en sesión por Controller::csrfToken
+    private function csrfValido(): bool
+    {
+        $token = $_POST['_token'] ?? '';
+        $guardado = $_SESSION['csrf_token'] ?? '';
+
+        return is_string($token) && $token !== '' && is_string($guardado) && hash_equals($guardado, $token);
     }
 }

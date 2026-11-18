@@ -4,18 +4,22 @@ declare(strict_types=1);
 
 namespace App\Services;
 
+use App\Contracts\Repositories\ReservationRepositoryInterface;
 use App\Contracts\Repositories\VehicleRepositoryInterface;
 use App\Contracts\Services\VehicleServiceInterface;
 use App\Enums\VehicleStatus;
 use App\Exceptions\ValidationException;
 use App\Models\Vehicle;
+use DateTimeImmutable;
 use LogicException;
 
 // Reglas de negocio de los vehículos.
 final class VehicleService implements VehicleServiceInterface
 {
-    public function __construct(private VehicleRepositoryInterface $repo)
-    {
+    public function __construct(
+        private VehicleRepositoryInterface $repo,
+        private ReservationRepositoryInterface $reservas,
+    ) {
     }
 
 
@@ -97,6 +101,12 @@ final class VehicleService implements VehicleServiceInterface
         }
 
         if ($status === VehicleStatus::Maintenance) {
+            // RN-05: no se envía a mantenimiento si hay reservas activas vigentes o futuras
+            $cruces = $this->reservas->findOverlapping($id, new DateTimeImmutable('today'), new DateTimeImmutable('+10 years'));
+            if (count($cruces) > 0) {
+                throw new LogicException('El vehículo tiene reservas activas, no puede enviarse a mantenimiento.');
+            }
+
             $vehiculo->markAsMaintenance();
         } elseif ($status === VehicleStatus::Available) {
             $vehiculo->markAsAvailable();

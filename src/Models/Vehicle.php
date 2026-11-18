@@ -126,6 +126,17 @@ final class Vehicle
         $this->status = VehicleStatus::Available;
     }
 
+    // RN-04: libera el vehículo al registrarse la devolución (transición alquilado -> disponible).
+    // La usa ReservationService; el cambio manual sigue bloqueado con markAsAvailable.
+    public function releaseFromRental(): void
+    {
+        if ($this->status !== VehicleStatus::Rented) {
+            throw new LogicException('Solo un vehículo alquilado puede devolverse.');
+        }
+
+        $this->status = VehicleStatus::Available;
+    }
+
     public function markAsMaintenance(): void
     {
         if ($this->status === VehicleStatus::Rented) {

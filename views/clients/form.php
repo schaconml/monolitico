@@ -11,6 +11,8 @@ $vals = [
 <h1 class="h3 mb-3"><?= $e($title) ?></h1>
 
 <form method="post" action="<?= $e($base) ?>/clientes" class="row g-3" novalidate>
+    <input type="hidden" name="_token" value="<?= $e($csrfToken) ?>">
+
     <div class="col-md-6">
         <label for="name" class="form-label">Nombre completo</label>
         <input type="text" id="name" name="name" class="form-control <?= isset($errors['name']) ? 'is-invalid' : '' ?>" value="<?= $e($vals['name']) ?>" required>

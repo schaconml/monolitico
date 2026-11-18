@@ -14,6 +14,9 @@ interface ReservationRepositoryInterface
 
     public function findById(int $id): ?Reservation;
 
+    // Bloquea la reserva dentro de una transacción (se usa al registrar la devolución)
+    public function findByIdForUpdate(int $id): ?Reservation;
+
     public function findByVehicle(int $vehicleId): array;
 
     public function findByClient(int $clientId): array;

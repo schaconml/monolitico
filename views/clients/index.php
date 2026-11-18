@@ -15,6 +15,7 @@
                     <th>Teléfono</th>
                     <th>Correo</th>
                     <th>Licencia</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -25,6 +26,9 @@
                         <td><?= $e($c->getPhone()) ?></td>
                         <td><?= $e($c->getEmail()) ?></td>
                         <td><?= $e($c->getDriverLicense()) ?></td>
+                        <td class="text-nowrap">
+                            <a href="<?= $e($base) ?>/clientes/<?= $e($c->getId()) ?>/historial" class="btn btn-sm btn-outline-secondary">Historial</a>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

@@ -13,4 +13,6 @@ return [
     ],
     // Ruta base de la aplicación (vacía si corre en la raíz del dominio).
     'base_url' => rtrim(getenv('APP_BASE_URL') ?: '', '/'),
+    // Zona horaria del negocio: no se depende de la configuración del servidor.
+    'timezone' => getenv('APP_TIMEZONE') ?: 'America/Bogota',
 ];

@@ -13,6 +13,8 @@ $accion = $vehicle === null ? '/vehiculos' : '/vehiculos/' . $vehicle->getId() .
 <h1 class="h3 mb-3"><?= $e($title) ?></h1>
 
 <form method="post" action="<?= $e($base . $accion) ?>" class="row g-3" novalidate>
+    <input type="hidden" name="_token" value="<?= $e($csrfToken) ?>">
+
     <div class="col-md-6">
         <label for="brand" class="form-label">Marca</label>
         <input type="text" id="brand" name="brand" class="form-control <?= isset($errors['brand']) ? 'is-invalid' : '' ?>" value="<?= $e($vals['brand']) ?>" required>

@@ -13,6 +13,9 @@ use PDO;
 // Lee y guarda clientes en la tabla "clientes".
 final class ClientRepository implements ClientRepositoryInterface
 {
+    // Columnas que se leen de la tabla (no se usa SELECT *)
+    private const COLUMNAS = 'id, nombre, telefono, correo, numero_licencia, created_at';
+
     private PDO $pdo;
 
     public function __construct(Database $database)
@@ -26,7 +29,8 @@ final class ClientRepository implements ClientRepositoryInterface
     // Lista todos los clientes
     public function findAll(): array
     {
-        $stmt = $this->pdo->query('SELECT * FROM clientes ORDER BY id DESC');
+        $stmt = $this->pdo->prepare('SELECT ' . self::COLUMNAS . ' FROM clientes ORDER BY id DESC');
+        $stmt->execute();
 
         $res = [];
         foreach ($stmt->fetchAll() as $fila) {
@@ -42,7 +46,7 @@ final class ClientRepository implements ClientRepositoryInterface
     // Busca un cliente por id (null si no existe)
     public function findById(int $id): ?Client
     {
-        $stmt = $this->pdo->prepare('SELECT * FROM clientes WHERE id = :id');
+        $stmt = $this->pdo->prepare('SELECT ' . self::COLUMNAS . ' FROM clientes WHERE id = :id');
         $stmt->execute(['id' => $id]);
         $fila = $stmt->fetch();
 
@@ -59,7 +63,7 @@ final class ClientRepository implements ClientRepositoryInterface
     // Busca un cliente por número de licencia (lo usa ClientService para evitar duplicados)
     public function findByLicense(string $license): ?Client
     {
-        $stmt = $this->pdo->prepare('SELECT * FROM clientes WHERE numero_licencia = :licencia');
+        $stmt = $this->pdo->prepare('SELECT ' . self::COLUMNAS . ' FROM clientes WHERE numero_licencia = :licencia');
         $stmt->execute(['licencia' => $license]);
         $fila = $stmt->fetch();
 

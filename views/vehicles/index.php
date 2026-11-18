@@ -50,11 +50,13 @@
                             </span>
                         </td>
                         <td class="text-nowrap">
+                            <a href="<?= $e($base) ?>/vehiculos/<?= $e($v->getId()) ?>/historial" class="btn btn-sm btn-outline-secondary">Historial</a>
                             <a href="<?= $e($base) ?>/vehiculos/<?= $e($v->getId()) ?>/editar" class="btn btn-sm btn-outline-primary">Editar</a>
 
                             <!-- Un vehículo alquilado no puede cambiar de estado a mano -->
                             <?php if (!$v->isRented()): ?>
                                 <form method="post" action="<?= $e($base) ?>/vehiculos/<?= $e($v->getId()) ?>/estado" class="d-inline" data-confirm="¿Desea cambiar el estado de este vehículo?">
+                                    <input type="hidden" name="_token" value="<?= $e($csrfToken) ?>">
                                     <?php if ($v->isAvailable()): ?>
                                         <input type="hidden" name="status" value="mantenimiento">
                                         <button type="submit" class="btn btn-sm btn-outline-secondary">Enviar a mantenimiento</button>

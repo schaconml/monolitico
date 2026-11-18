@@ -13,8 +13,11 @@
         <div class="container">
             <a class="navbar-brand" href="<?= $e($base) ?>/">Gestor de Alquiler</a>
             <div class="navbar-nav">
+                <a class="nav-link" href="<?= $e($base) ?>/">Inicio</a>
                 <a class="nav-link" href="<?= $e($base) ?>/vehiculos">Vehículos</a>
                 <a class="nav-link" href="<?= $e($base) ?>/clientes">Clientes</a>
+                <a class="nav-link" href="<?= $e($base) ?>/reservas">Reservas</a>
+                <a class="nav-link" href="<?= $e($base) ?>/reportes/disponibilidad">Disponibilidad</a>
             </div>
         </div>
     </nav>
