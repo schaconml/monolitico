@@ -2,27 +2,27 @@
 
 <p class="text-muted">
     Año <?= $e($vehicle->getYear()) ?> · <?= $e($vehicle->getCategory()) ?>
-    <span class="badge text-bg-<?= $e($vehicle->getStatus()->badge()) ?> ms-1">
-        <?= $e($vehicle->getStatus()->label()) ?>
-    </span>
+    <data class="badge text-bg-<?= $e($vehicle->getStatus()->badge()) ?>" value="<?= $e($vehicle->getStatus()->value) ?>"><?= $e($vehicle->getStatus()->label()) ?></data>
 </p>
 
 <a href="<?= $e($base) ?>/vehiculos" class="btn btn-outline-secondary btn-sm mb-3">Volver a vehículos</a>
 
 <!-- RF-08: todas las reservas del vehículo, del más reciente al más antiguo -->
 <?php if (count($reservations) === 0): ?>
-    <p class="text-muted">El vehículo no tiene reservas registradas.</p>
+    <p class="text-muted empty-state">El vehículo no tiene reservas registradas.</p>
 <?php else: ?>
-    <div class="table-responsive">
+    <section class="table-scroll" aria-labelledby="historial-vehiculo-title">
+        <h2 id="historial-vehiculo-title" class="sr-only">Historial de reservas del vehículo</h2>
         <table class="table table-striped align-middle">
+            <caption>Reservas de <?= $e($vehicle->getBrand() . ' ' . $vehicle->getModel()) ?></caption>
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Cliente</th>
-                    <th>Inicio</th>
-                    <th>Fin</th>
-                    <th>Devolución real</th>
-                    <th>Estado</th>
+                    <th scope="col">Id</th>
+                    <th scope="col">Cliente</th>
+                    <th scope="col">Inicio</th>
+                    <th scope="col">Fin</th>
+                    <th scope="col">Devolución real</th>
+                    <th scope="col">Estado</th>
                 </tr>
             </thead>
             <tbody>
@@ -41,13 +41,11 @@
                             <?php endif; ?>
                         </td>
                         <td>
-                            <span class="badge text-bg-<?= $e($r->getStatus()->badge()) ?>">
-                                <?= $e($r->getStatus()->label()) ?>
-                            </span>
+                            <data class="badge text-bg-<?= $e($r->getStatus()->badge()) ?>" value="<?= $e($r->getStatus()->value) ?>"><?= $e($r->getStatus()->label()) ?></data>
                         </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
-    </div>
+    </section>
 <?php endif; ?>

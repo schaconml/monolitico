@@ -8,22 +8,23 @@
     <link href="<?= $e($base) ?>/assets/css/styles.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Barra de navegación -->
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="<?= $e($base) ?>/">Gestor de Alquiler</a>
-            <div class="navbar-nav">
-                <a class="nav-link" href="<?= $e($base) ?>/">Inicio</a>
-                <a class="nav-link" href="<?= $e($base) ?>/vehiculos">Vehículos</a>
-                <a class="nav-link" href="<?= $e($base) ?>/clientes">Clientes</a>
-                <a class="nav-link" href="<?= $e($base) ?>/reservas">Reservas</a>
-                <a class="nav-link" href="<?= $e($base) ?>/reportes/disponibilidad">Disponibilidad</a>
-            </div>
-        </div>
-    </nav>
+    <a class="skip-link" href="#contenido">Saltar al contenido principal</a>
 
-    <main class="container py-4">
+    <header class="site-header">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Navegación principal">
+            <ul class="site-nav">
+                <li><a class="navbar-brand" href="<?= $e($base) ?>/">Gestor de Alquiler</a></li>
+                <li><a class="nav-link" href="<?= $e($base) ?>/">Inicio</a></li>
+                <li><a class="nav-link" href="<?= $e($base) ?>/vehiculos">Vehículos</a></li>
+                <li><a class="nav-link" href="<?= $e($base) ?>/clientes">Clientes</a></li>
+                <li><a class="nav-link" href="<?= $e($base) ?>/reservas">Reservas</a></li>
+                <li><a class="nav-link" href="<?= $e($base) ?>/reportes/disponibilidad">Disponibilidad</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container py-4" id="contenido">
         <!-- Mensaje de resultado (viene de Controller::flash) -->
         <?php if ($flash !== null): ?>
-            <div class="alert alert-<?= $e($flash['type']) ?>" role="alert"><?= $e($flash['message']) ?></div>
+            <p class="alert alert-<?= $e($flash['type']) ?>" role="alert"><?= $e($flash['message']) ?></p>
         <?php endif; ?>

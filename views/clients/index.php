@@ -1,21 +1,23 @@
-<div class="d-flex justify-content-between align-items-center mb-3">
-    <h1 class="h3 mb-0">Clientes</h1>
+<section class="clientes-header mb-3" aria-labelledby="clientes-title">
+    <h1 id="clientes-title" class="h3 mb-0">Clientes</h1>
     <a href="<?= $e($base) ?>/clientes/crear" class="btn btn-primary">Registrar cliente</a>
-</div>
+</section>
 
 <?php if (count($clients) === 0): ?>
-    <p class="text-muted">No hay clientes registrados.</p>
+    <p class="text-muted empty-state">No hay clientes registrados.</p>
 <?php else: ?>
-    <div class="table-responsive">
+    <section class="table-scroll" aria-labelledby="clientes-table-title">
+        <h2 id="clientes-table-title" class="sr-only">Listado de clientes</h2>
         <table class="table table-striped align-middle">
+            <caption>Clientes registrados</caption>
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Nombre</th>
-                    <th>Teléfono</th>
-                    <th>Correo</th>
-                    <th>Licencia</th>
-                    <th>Acciones</th>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Teléfono</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Licencia</th>
+                    <th scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -33,5 +35,5 @@
                 <?php endforeach; ?>
             </tbody>
         </table>
-    </div>
+    </section>
 <?php endif; ?>

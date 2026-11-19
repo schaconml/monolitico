@@ -6,18 +6,20 @@
 
 <!-- RF-09: todas las reservas del cliente, del más reciente al más antiguo -->
 <?php if (count($reservations) === 0): ?>
-    <p class="text-muted">El cliente no tiene reservas registradas.</p>
+    <p class="text-muted empty-state">El cliente no tiene reservas registradas.</p>
 <?php else: ?>
-    <div class="table-responsive">
+    <section class="table-scroll" aria-labelledby="historial-cliente-title">
+        <h2 id="historial-cliente-title" class="sr-only">Historial de reservas del cliente</h2>
         <table class="table table-striped align-middle">
+            <caption>Reservas de <?= $e($client->getName()) ?></caption>
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Vehículo</th>
-                    <th>Inicio</th>
-                    <th>Fin</th>
-                    <th>Devolución real</th>
-                    <th>Estado</th>
+                    <th scope="col">Id</th>
+                    <th scope="col">Vehículo</th>
+                    <th scope="col">Inicio</th>
+                    <th scope="col">Fin</th>
+                    <th scope="col">Devolución real</th>
+                    <th scope="col">Estado</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,13 +38,11 @@
                             <?php endif; ?>
                         </td>
                         <td>
-                            <span class="badge text-bg-<?= $e($r->getStatus()->badge()) ?>">
-                                <?= $e($r->getStatus()->label()) ?>
-                            </span>
+                            <data class="badge text-bg-<?= $e($r->getStatus()->badge()) ?>" value="<?= $e($r->getStatus()->value) ?>"><?= $e($r->getStatus()->label()) ?></data>
                         </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
-    </div>
+    </section>
 <?php endif; ?>

@@ -1,23 +1,25 @@
-<div class="d-flex justify-content-between align-items-center mb-3">
-    <h1 class="h3 mb-0">Reservas</h1>
+<section class="reservas-header mb-3" aria-labelledby="reservas-title">
+    <h1 id="reservas-title" class="h3 mb-0">Reservas</h1>
     <a href="<?= $e($base) ?>/reservas/crear" class="btn btn-primary">Nueva reserva</a>
-</div>
+</section>
 
 <?php if (count($reservations) === 0): ?>
-    <p class="text-muted">No hay reservas registradas.</p>
+    <p class="text-muted empty-state">No hay reservas registradas.</p>
 <?php else: ?>
-    <div class="table-responsive">
+    <section class="table-scroll" aria-labelledby="reservas-table-title">
+        <h2 id="reservas-table-title" class="sr-only">Listado de reservas</h2>
         <table class="table table-striped align-middle">
+            <caption>Reservas registradas</caption>
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Vehículo</th>
-                    <th>Cliente</th>
-                    <th>Inicio</th>
-                    <th>Fin</th>
-                    <th>Devolución real</th>
-                    <th>Estado</th>
-                    <th>Acciones</th>
+                    <th scope="col">Id</th>
+                    <th scope="col">Vehículo</th>
+                    <th scope="col">Cliente</th>
+                    <th scope="col">Inicio</th>
+                    <th scope="col">Fin</th>
+                    <th scope="col">Devolución real</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -38,9 +40,7 @@
                             <?php endif; ?>
                         </td>
                         <td>
-                            <span class="badge text-bg-<?= $e($r->getStatus()->badge()) ?>">
-                                <?= $e($r->getStatus()->label()) ?>
-                            </span>
+                            <data class="badge text-bg-<?= $e($r->getStatus()->badge()) ?>" value="<?= $e($r->getStatus()->value) ?>"><?= $e($r->getStatus()->label()) ?></data>
                         </td>
                         <td class="text-nowrap">
                             <?php if ($r->isActive()): ?>
@@ -51,5 +51,5 @@
                 <?php endforeach; ?>
             </tbody>
         </table>
-    </div>
+    </section>
 <?php endif; ?>

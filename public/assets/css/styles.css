@@ -1,8 +1,202 @@
-/* Ajustes menores sobre Bootstrap */
+/* ===== Ajustes semánticos sobre Bootstrap ===== */
 body {
     background-color: #f8f9fa;
 }
 
+/* Enlaces de salto al contenido */
+.skip-link {
+    position: absolute;
+    top: -10000px;
+    left: 0;
+    z-index: 9999;
+    background: #000;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    border-radius: 0 0 0.5rem 0;
+}
+.skip-link:focus {
+    top: 0.5rem;
+    left: 0.5rem;
+}
+
+/* Navegación: reemplaza div.container y div.navbar-nav */
+.site-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+}
+.site-nav li {
+    margin: 0;
+}
+.site-nav .navbar-brand {
+    font-weight: 700;
+    margin-right: 1rem;
+}
+
+/* Mensajes flash: reemplaza div.alert */
+.alert {
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    border-radius: 0.375rem;
+    border: 1px solid transparent;
+}
+.alert-danger {
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
+    color: #842029;
+}
+
+/* Dashboard: contadores de la flota */
+.stats-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    gap: 0.75rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.stats-item {
+    margin: 0;
+}
+.stats-item article.card {
+    text-align: center;
+}
+
+/* Dashboard: módulos */
+.modulos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: 0.75rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.modulos-grid li {
+    margin: 0;
+}
+
+/* Formularios: filas de campo (reemplazan div.col-*) */
+.form-fila {
+    margin-bottom: 0.75rem;
+}
+.form-fila .form-label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+}
+.form-fila .form-control,
+.form-fila .form-select {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.form-fila .form-control.is-invalid,
+.form-fila .form-select.is-invalid {
+    border-color: #dc3545;
+}
+
+/* Errores de campo: reemplazan div.invalid-feedback */
+.field-error {
+    color: #dc3545;
+    font-size: 0.875em;
+    margin-top: 0.25rem;
+}
+
+/* Acciones de formulario */
+.form-acciones {
+    margin-top: 1rem;
+}
+
+/* Tablas con desplazamiento horizontal: reemplazan div.table-responsive */
+.table-scroll {
+    overflow-x: auto;
+    margin-bottom: 1rem;
+}
+
+/* Tablas */
+.table th {
+    white-space: nowrap;
+}
+.table td.text-nowrap {
+    white-space: nowrap;
+}
+
+/* Badge en elementos data (reemplazan span.badge) */
+data.badge {
+    display: inline-block;
+    padding: 0.35em 0.65em;
+    font-size: 0.75em;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.375rem;
+    color: #fff;
+}
+
+/* Detalle de devolución: lista de definiciones semántica */
+.detalle-reserva {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 0.5rem 1rem;
+    margin-bottom: 1rem;
+}
+.detalle-reserva dt {
+    font-weight: 600;
+    margin: 0;
+}
+.detalle-reserva dd {
+    margin: 0;
+}
+
+/* Filtros y formularios de disponibilidad */
+.form-disponibilidad fieldset,
+.formulario-vehiculo fieldset,
+.formulario-cliente fieldset,
+.formulario-reserva fieldset {
+    border: 1px solid #dee2e6;
+    border-radius: 0.375rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+.form-disponibilidad legend,
+.formulario-vehiculo legend,
+.formulario-cliente legend,
+.formulario-reserva legend {
+    font-weight: 600;
+    font-size: 1rem;
+    width: auto;
+    margin-bottom: 0.75rem;
+    padding: 0 0.5rem;
+}
+
+/* Estado vacío */
+.empty-state {
+    text-align: center;
+    padding: 1rem;
+    color: #6c757d;
+}
+
+/* Títulos de sección */
+h1.h3, h2.h5 {
+    margin-top: 0;
+}
+
+/* Ajustes de tabla */
 .table th {
     white-space: nowrap;
 }

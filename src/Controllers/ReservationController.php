@@ -40,12 +40,15 @@ final class ReservationController extends Controller
     // GET /reservas/crear - formulario con los selectores de cliente y vehículo
     public function create(): void
     {
+        $hoy = (new DateTimeImmutable('today'))->format('Y-m-d');
+
         $this->view('reservations/create', [
             'title' => 'Nueva reserva',
             'clients' => $this->clientes->list(),
             'vehicles' => $this->vehiculos->list(),
             'old' => [],
             'errors' => [],
+            'hoy' => $hoy,
         ]);
     }
 
@@ -91,11 +94,14 @@ final class ReservationController extends Controller
             $this->redirect('/reservas');
         }
 
+        $hoy = (new DateTimeImmutable('today'))->format('d/m/Y');
+
         $this->view('reservations/return', [
             'title' => 'Registrar devolución',
             'reservation' => $reserva,
             'vehicle' => $this->vehiculos->find($reserva->getVehicleId()),
             'client' => $this->clientes->find($reserva->getClientId()),
+            'hoy' => $hoy,
         ]);
     }
 
