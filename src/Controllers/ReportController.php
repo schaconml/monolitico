@@ -25,8 +25,16 @@ final class ReportController extends Controller
     // GET /reportes/disponibilidad - vehículos libres ahora o en un rango de fechas
     public function availability(): void
     {
-        $inicio = $this->parseDate($_GET['inicio'] ?? '');
-        $fin = $this->parseDate($_GET['fin'] ?? '');
+        $inicioValor = $_GET['inicio'] ?? '';
+        $finValor = $_GET['fin'] ?? '';
+
+        if (!is_string($inicioValor) || !is_string($finValor)) {
+            $inicioValor = '';
+            $finValor = '';
+        }
+
+        $inicio = $this->parseDate($inicioValor);
+        $fin = $this->parseDate($finValor);
 
         // Forma de la petición: si llegan las dos fechas, el rango debe ser coherente
         $errorRango = ($inicio !== null && $fin !== null && $fin < $inicio)
@@ -36,8 +44,8 @@ final class ReportController extends Controller
         $this->view('reports/availability', [
             'title' => 'Vehículos disponibles',
             'vehicles' => $errorRango === null ? $this->service->availableVehicles($inicio, $fin) : [],
-            'inicio' => trim($_GET['inicio'] ?? ''),
-            'fin' => trim($_GET['fin'] ?? ''),
+            'inicio' => $inicioValor,
+            'fin' => $finValor,
             'rangoError' => $errorRango,
         ]);
     }
