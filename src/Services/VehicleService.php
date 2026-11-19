@@ -140,13 +140,13 @@ final class VehicleService implements VehicleServiceInterface
 
         if ($brand === '') {
             $errores['brand'] = 'La marca es obligatoria.';
-        } elseif (strlen($brand) > 100) {
+        } elseif (mb_strlen($brand) > 100) {
             $errores['brand'] = 'La marca no puede superar los 100 caracteres.';
         }
 
         if ($model === '') {
             $errores['model'] = 'El modelo es obligatorio.';
-        } elseif (strlen($model) > 100) {
+        } elseif (mb_strlen($model) > 100) {
             $errores['model'] = 'El modelo no puede superar los 100 caracteres.';
         }
 
@@ -158,7 +158,7 @@ final class VehicleService implements VehicleServiceInterface
 
         if ($category === '') {
             $errores['category'] = 'La categoría es obligatoria.';
-        } elseif (strlen($category) > 50) {
+        } elseif (mb_strlen($category) > 50) {
             $errores['category'] = 'La categoría no puede superar los 50 caracteres.';
         }
 

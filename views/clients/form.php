@@ -10,7 +10,7 @@ $vals = [
 
 <h1 class="h3 mb-3"><?= $e($title) ?></h1>
 
-<form method="post" action="<?= $e($base) ?>/clientes" class="formulario-cliente" novalidate>
+<form method="post" action="<?= $e($base) ?>/clientes" class="formulario-cliente" novalidate accept-charset="UTF-8">
     <input type="hidden" name="_token" value="<?= $e($csrfToken) ?>">
 
     <fieldset>
@@ -34,7 +34,10 @@ $vals = [
 
         <section class="form-fila">
             <label for="phone" class="form-label">Teléfono</label>
-            <input type="text" id="phone" name="phone" class="form-control" value="<?= $e($vals['phone']) ?>">
+            <input type="text" id="phone" name="phone" class="form-control <?= isset($errors['phone']) ? 'is-invalid' : '' ?>" value="<?= $e($vals['phone']) ?>" maxlength="50">
+            <?php if (isset($errors['phone'])): ?>
+                <p id="phone-error" class="field-error"><?= $e($errors['phone']) ?></p>
+            <?php endif; ?>
         </section>
 
         <section class="form-fila">

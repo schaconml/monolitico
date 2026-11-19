@@ -14,7 +14,7 @@ $vals = [
     <p class="text-muted">Para crear una reserva debe haber al menos un cliente y un vehículo registrados.</p>
     <a href="<?= $e($base) ?>/reservas" class="btn btn-outline-secondary">Volver</a>
 <?php else: ?>
-    <form method="post" action="<?= $e($base) ?>/reservas" class="formulario-reserva" novalidate>
+    <form method="post" action="<?= $e($base) ?>/reservas" class="formulario-reserva" novalidate accept-charset="UTF-8">
         <input type="hidden" name="_token" value="<?= $e($csrfToken) ?>">
 
         <fieldset>

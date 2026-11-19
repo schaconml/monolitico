@@ -52,28 +52,28 @@ final class ClientService implements ClientServiceInterface
         $name = trim($data['name'] ?? '');
         if ($name === '') {
             $errores['name'] = 'El nombre es obligatorio.';
-        } elseif (strlen($name) > 150) {
+        } elseif (mb_strlen($name) > 150) {
             $errores['name'] = 'El nombre no puede superar los 150 caracteres.';
         }
 
         $correo = trim($data['email'] ?? '');
         if ($correo !== '' && filter_var($correo, FILTER_VALIDATE_EMAIL) === false) {
             $errores['email'] = 'El correo no tiene un formato válido.';
-        } elseif ($correo !== '' && strlen($correo) > 100) {
+        } elseif ($correo !== '' && mb_strlen($correo) > 100) {
             $errores['email'] = 'El correo no puede superar los 100 caracteres.';
         }
 
         $licencia = trim($data['driver_license'] ?? '');
         if ($licencia === '') {
             $errores['driver_license'] = 'El número de licencia es obligatorio.';
-        } elseif (strlen($licencia) > 50) {
+        } elseif (mb_strlen($licencia) > 50) {
             $errores['driver_license'] = 'El número de licencia no puede superar los 50 caracteres.';
         } elseif ($this->repo->findByLicense($licencia) !== null) {
             $errores['driver_license'] = 'Ya existe un cliente con esa licencia.';
         }
 
         $phone = trim($data['phone'] ?? '');
-        if ($phone !== '' && strlen($phone) > 50) {
+        if ($phone !== '' && mb_strlen($phone) > 50) {
             $errores['phone'] = 'El teléfono no puede superar los 50 caracteres.';
         }
 

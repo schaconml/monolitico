@@ -29,7 +29,7 @@ $vehiculoNombre = $vehicle === null ? '-' : $vehicle->getBrand() . ' ' . $vehicl
         <dd>Hoy, <?= $e($hoy) ?></dd>
     </dl>
 
-    <form method="post" action="<?= $e($base) ?>/reservas/<?= $e($reservation->getId()) ?>/devolucion" data-confirm="¿Desea registrar la devolución y liberar el vehículo?">
+    <form method="post" action="<?= $e($base) ?>/reservas/<?= $e($reservation->getId()) ?>/devolucion" data-confirm="¿Desea registrar la devolución y liberar el vehículo?" accept-charset="UTF-8">
         <input type="hidden" name="_token" value="<?= $e($csrfToken) ?>">
         <button type="submit" class="btn btn-success">Confirmar devolución</button>
         <a href="<?= $e($base) ?>/reservas" class="btn btn-outline-secondary">Cancelar</a>

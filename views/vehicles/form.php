@@ -12,7 +12,7 @@ $accion = $vehicle === null ? '/vehiculos' : '/vehiculos/' . $vehicle->getId() .
 
 <h1 class="h3 mb-3"><?= $e($title) ?></h1>
 
-<form method="post" action="<?= $e($base . $accion) ?>" class="formulario-vehiculo" novalidate>
+<form method="post" action="<?= $e($base . $accion) ?>" class="formulario-vehiculo" novalidate accept-charset="UTF-8">
     <input type="hidden" name="_token" value="<?= $e($csrfToken) ?>">
 
     <fieldset>

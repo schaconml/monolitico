@@ -58,9 +58,19 @@ final class ReservationController extends Controller
     public function store(): void
     {
         try {
+            $clientId = $_POST['client_id'] ?? 0;
+            $vehicleId = $_POST['vehicle_id'] ?? 0;
+
+            if (!is_string($clientId) && !is_int($clientId)) {
+                throw new ValidationException(['client_id' => 'Seleccione un cliente.']);
+            }
+            if (!is_string($vehicleId) && !is_int($vehicleId)) {
+                throw new ValidationException(['vehicle_id' => 'Seleccione un vehículo.']);
+            }
+
             $this->service->create(
-                (int) ($_POST['client_id'] ?? 0),
-                (int) ($_POST['vehicle_id'] ?? 0),
+                (int) $clientId,
+                (int) $vehicleId,
                 $this->parseDate($_POST['start_date'] ?? '', 'start_date'),
                 $this->parseDate($_POST['end_date'] ?? '', 'end_date'),
             );

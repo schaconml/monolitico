@@ -23,7 +23,12 @@ final class VehicleController extends Controller
     // GET /vehiculos - listado con filtro por estado
     public function index(): void
     {
-        $filtro = VehicleStatus::tryFrom($_GET['estado'] ?? '');
+        $estadoValor = $_GET['estado'] ?? '';
+        if (!is_string($estadoValor)) {
+            $estadoValor = '';
+        }
+
+        $filtro = VehicleStatus::tryFrom($estadoValor);
 
         $this->view('vehicles/index', [
             'title' => 'Vehículos',
