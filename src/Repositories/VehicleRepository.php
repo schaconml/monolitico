@@ -145,8 +145,13 @@ final class VehicleRepository implements VehicleRepositoryInterface
     public function findAvailableForRange(?DateTimeImmutable $start, ?DateTimeImmutable $end): array
     {
         if ($start === null || $end === null) {
-            $stmt = $this->pdo->prepare('SELECT ' . self::COLUMNAS . ' FROM vehiculos WHERE estado = :estado ORDER BY id DESC');
-            $stmt->execute(['estado' => VehicleStatus::Available->value]);
+            $stmt = $this->pdo->prepare(
+                'SELECT ' . self::COLUMNAS . ' FROM vehiculos
+                 WHERE estado = :estado
+                   AND NOT EXISTS (SELECT 1 FROM reservas r WHERE r.vehiculo_id = vehiculos.id AND r.estado = :activa AND r.fecha_inicio <= :hoy AND r.fecha_fin >= :hoy2)
+                 ORDER BY id DESC'
+            );
+            $stmt->execute(['estado' => VehicleStatus::Available->value, 'activa' => 'activa', 'hoy' => date('Y-m-d'), 'hoy2' => date('Y-m-d')]);
 
             return $this->toList($stmt);
         }

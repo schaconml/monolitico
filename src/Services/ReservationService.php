@@ -144,8 +144,11 @@ final class ReservationService implements ReservationServiceInterface
             return;
         }
 
-        $vehiculo->releaseFromRental();
-        $this->vehiculos->update($vehiculo);
+        // Reserva hecha por adelantado: el vehículo pudo no pasar nunca a "alquilado"
+        if ($vehiculo->isRented()) {
+            $vehiculo->releaseFromRental();
+            $this->vehiculos->update($vehiculo);
+        }
     }
 
 

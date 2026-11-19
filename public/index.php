@@ -136,4 +136,15 @@ $router->post('/reservas/{id}/devolucion', [ReservationController::class, 'proce
 
 $router->get('/reportes/disponibilidad', [ReportController::class, 'availability']);
 
+// Cualquier parámetro que llegue como arreglo (campo[]=x) no es válido en esta aplicación
+foreach ([$_GET, $_POST] as $origen) {
+    foreach ($origen as $valorParam) {
+        if (is_array($valorParam)) {
+            http_response_code(400);
+            echo 'Solicitud inválida.';
+            exit;
+        }
+    }
+}
+
 $router->dispatch($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
