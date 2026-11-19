@@ -116,7 +116,14 @@ final class VehicleController extends Controller
     // POST /vehiculos/{id}/estado - pasa a mantenimiento o disponible
     public function changeStatus(string $id): void
     {
-        $nuevo = VehicleStatus::tryFrom($_POST['status'] ?? '');
+        $statusValor = $_POST['status'] ?? '';
+        if (!is_string($statusValor)) {
+            $this->flash('danger', 'El estado indicado no es válido.');
+            $this->redirect('/vehiculos');
+            return;
+        }
+
+        $nuevo = VehicleStatus::tryFrom($statusValor);
 
         try {
             if ($nuevo === null) {

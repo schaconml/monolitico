@@ -125,9 +125,19 @@ final class ReservationController extends Controller
     // Convierte el texto del formulario en fecha (Y-m-d); lanza ValidationException si no es válida
     private function parseDate(string $valor, string $campo): DateTimeImmutable
     {
-        $fecha = DateTimeImmutable::createFromFormat('Y-m-d|', trim($valor));
+        if (!is_string($valor)) {
+            throw new ValidationException([$campo => 'La fecha indicada no es válida.']);
+        }
+
+        $valor = trim($valor);
+        $fecha = DateTimeImmutable::createFromFormat('Y-m-d|', $valor);
 
         if ($fecha === false) {
+            throw new ValidationException([$campo => 'La fecha indicada no es válida.']);
+        }
+
+        // Rechazar fechas inválidas que PHP normaliza (ej. 30 de febrero → 2 de marzo)
+        if ($fecha->format('Y-m-d') !== $valor) {
             throw new ValidationException([$campo => 'La fecha indicada no es válida.']);
         }
 

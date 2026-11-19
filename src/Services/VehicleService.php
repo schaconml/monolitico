@@ -127,12 +127,27 @@ final class VehicleService implements VehicleServiceInterface
     {
         $errores = [];
 
-        if (trim($data['brand'] ?? '') === '') {
-            $errores['brand'] = 'La marca es obligatoria.';
+        // Validar que los campos presentes sean strings (evitar inyección de arreglos como brand[])
+        foreach (['brand', 'model', 'category', 'status'] as $campo) {
+            if (array_key_exists($campo, $data) && !is_string($data[$campo])) {
+                $errores[$campo] = 'El campo ' . $campo . ' debe ser un texto.';
+            }
         }
 
-        if (trim($data['model'] ?? '') === '') {
+        $brand = trim($data['brand'] ?? '');
+        $model = trim($data['model'] ?? '');
+        $category = trim($data['category'] ?? '');
+
+        if ($brand === '') {
+            $errores['brand'] = 'La marca es obligatoria.';
+        } elseif (strlen($brand) > 100) {
+            $errores['brand'] = 'La marca no puede superar los 100 caracteres.';
+        }
+
+        if ($model === '') {
             $errores['model'] = 'El modelo es obligatorio.';
+        } elseif (strlen($model) > 100) {
+            $errores['model'] = 'El modelo no puede superar los 100 caracteres.';
         }
 
         $anio = filter_var($data['year'] ?? '', FILTER_VALIDATE_INT);
@@ -141,8 +156,10 @@ final class VehicleService implements VehicleServiceInterface
             $errores['year'] = "El año debe estar entre 1950 y {$maximo}.";
         }
 
-        if (trim($data['category'] ?? '') === '') {
+        if ($category === '') {
             $errores['category'] = 'La categoría es obligatoria.';
+        } elseif (strlen($category) > 50) {
+            $errores['category'] = 'La categoría no puede superar los 50 caracteres.';
         }
 
         if (count($errores) > 0) {
