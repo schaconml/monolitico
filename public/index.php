@@ -39,12 +39,29 @@ require dirname(__DIR__) . '/vendor/autoload.php';
 
 session_start();
 
+// Detectar la raíz pública automáticamente (mismo patrón que proyecto-php1).
+// Cuando Apache tiene DocumentRoot en htdocs y el proyecto vive en una
+// subcarpeta (localhost:8080/monolitico), SCRIPT_NAME es algo como
+// /monolitico/public/index.php. Se elimina el sufijo /public para obtener
+// la ruta lógica de la aplicación: /monolitico.
+$scriptName = str_replace('\\', '/', (string) ($_SERVER['SCRIPT_NAME'] ?? '/index.php'));
+$scriptDir = rtrim(str_replace('\\', '/', dirname($scriptName)), '/');
+$detectedBasePath = (string) preg_replace('#/public$#', '', $scriptDir);
+if ($detectedBasePath === '/' || $detectedBasePath === '.') {
+    $detectedBasePath = '';
+}
+
+// La variable de entorno APP_BASE_URL tiene prioridad sobre la detección automática.
+$envBaseUrl = getenv('APP_BASE_URL');
+$baseUrl = ($envBaseUrl !== false && $envBaseUrl !== '') ? rtrim($envBaseUrl, '/') : rtrim($detectedBasePath, '/');
+
+define('BASE_URL', $baseUrl);
+
 $config = require dirname(__DIR__) . '/config/config.php';
 
 date_default_timezone_set($config['timezone']);
 
 define('VIEWS_PATH', dirname(__DIR__) . '/views');
-define('BASE_URL', $config['base_url']);
 
 
 

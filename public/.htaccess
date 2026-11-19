@@ -1,3 +1,6 @@
+# Evitar listado de directorios dentro de public/
+Options -Indexes
+
 RewriteEngine On
 
 # Si el archivo o carpeta existe se sirve directo, si no pasa al Front Controller

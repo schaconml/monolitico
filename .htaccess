@@ -1,0 +1,31 @@
+# Evitar listado de directorios en la raíz del proyecto
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # 1) El código de la aplicación no se expone por HTTP.
+    RewriteRule ^src/ - [F,L]
+    RewriteRule ^views/ - [F,L]
+    RewriteRule ^config/ - [F,L]
+    RewriteRule ^vendor/ - [F,L]
+    RewriteRule ^DOCSDEV/ - [F,L]
+    RewriteRule ^pruebas/ - [F,L]
+    RewriteRule ^SKILLS/ - [F,L]
+    RewriteRule ^\.git - [F,L]
+    RewriteRule ^\.htaccess$ - [F,L]
+    RewriteRule ^composer\.(json|lock)$ - [F,L]
+
+    # 2) Los archivos estáticos de public/ se sirven directamente si existen.
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule ^public/ - [L]
+
+    # 2b) Los assets públicos (CSS, JS, imágenes) se sirven desde public/assets/.
+    RewriteRule ^assets/(.*)$ public/assets/$1 [L]
+
+    # 3) Front Controller: cualquier otra ruta la resuelve public/index.php.
+    #    Las reglas usan rutas relativas, por lo que el proyecto funciona en
+    #    cualquier carpeta dentro de htdocs (localhost:8080/monolitico/).
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ public/index.php [QSA,L]
+</IfModule>
