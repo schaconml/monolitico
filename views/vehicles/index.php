@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 <header class="vehicles-header">
     <h1>Vehículos</h1>
     <a href="<?= $e($base) ?>/vehiculos/crear">Registrar vehículo</a>
 </header>
+=======
+<section class="vehicles-header" aria-labelledby="vehiculos-title">
+    <h1 id="vehiculos-title">Vehículos</h1>
+    <a href="<?= $e($base) ?>/vehiculos/crear">Registrar vehículo</a>
+</section>
+>>>>>>> 035cf0eb1e72d0dd7723c05c1fa64aa4bfa56dc6
 
 <!-- Filtro por estado -->
 <form method="get" action="<?= $e($base) ?>/vehiculos" class="filtro-form">

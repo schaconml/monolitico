@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 <header class="clientes-header">
     <h1>Clientes</h1>
     <a href="<?= $e($base) ?>/clientes/crear">Registrar cliente</a>
 </header>
+=======
+<section class="clientes-header" aria-labelledby="clientes-title">
+    <h1 id="clientes-title">Clientes</h1>
+    <a href="<?= $e($base) ?>/clientes/crear">Registrar cliente</a>
+</section>
+>>>>>>> 035cf0eb1e72d0dd7723c05c1fa64aa4bfa56dc6
 
 <?php if (count($clients) === 0): ?>
     <p class="empty-state">No hay clientes registrados.</p>

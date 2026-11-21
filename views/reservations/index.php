@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 <header class="reservas-header">
     <h1>Reservas</h1>
     <a href="<?= $e($base) ?>/reservas/crear">Nueva reserva</a>
 </header>
+=======
+<section class="reservas-header" aria-labelledby="reservas-title">
+    <h1 id="reservas-title">Reservas</h1>
+    <a href="<?= $e($base) ?>/reservas/crear">Nueva reserva</a>
+</section>
+>>>>>>> 035cf0eb1e72d0dd7723c05c1fa64aa4bfa56dc6
 
 <?php if (count($reservations) === 0): ?>
     <p class="empty-state">No hay reservas registradas.</p>

@@ -18,7 +18,11 @@ $accion = $vehicle === null ? '/vehiculos' : '/vehiculos/' . $vehicle->getId() .
     <fieldset>
         <legend>Datos del vehículo</legend>
 
+<<<<<<< HEAD
         <p class="form-fila">
+=======
+        <section class="form-fila">
+>>>>>>> 035cf0eb1e72d0dd7723c05c1fa64aa4bfa56dc6
             <label for="brand">Marca</label>
             <input type="text" id="brand" name="brand" <?= isset($errors['brand']) ? 'aria-invalid="true" aria-describedby="brand-error"' : '' ?> value="<?= $e($vals['brand']) ?>" required>
             <?php if (isset($errors['brand'])): ?>
@@ -26,7 +30,11 @@ $accion = $vehicle === null ? '/vehiculos' : '/vehiculos/' . $vehicle->getId() .
             <?php endif; ?>
         </p>
 
+<<<<<<< HEAD
         <p class="form-fila">
+=======
+        <section class="form-fila">
+>>>>>>> 035cf0eb1e72d0dd7723c05c1fa64aa4bfa56dc6
             <label for="model">Modelo</label>
             <input type="text" id="model" name="model" <?= isset($errors['model']) ? 'aria-invalid="true" aria-describedby="model-error"' : '' ?> value="<?= $e($vals['model']) ?>" required>
             <?php if (isset($errors['model'])): ?>
@@ -34,7 +42,11 @@ $accion = $vehicle === null ? '/vehiculos' : '/vehiculos/' . $vehicle->getId() .
             <?php endif; ?>
         </p>
 
+<<<<<<< HEAD
         <p class="form-fila">
+=======
+        <section class="form-fila">
+>>>>>>> 035cf0eb1e72d0dd7723c05c1fa64aa4bfa56dc6
             <label for="year">Año</label>
             <input type="number" id="year" name="year" <?= isset($errors['year']) ? 'aria-invalid="true" aria-describedby="year-error"' : '' ?> value="<?= $e($vals['year']) ?>" required>
             <?php if (isset($errors['year'])): ?>
@@ -42,7 +54,11 @@ $accion = $vehicle === null ? '/vehiculos' : '/vehiculos/' . $vehicle->getId() .
             <?php endif; ?>
         </p>
 
+<<<<<<< HEAD
         <p class="form-fila">
+=======
+        <section class="form-fila">
+>>>>>>> 035cf0eb1e72d0dd7723c05c1fa64aa4bfa56dc6
             <label for="category">Categoría</label>
             <input type="text" id="category" name="category" <?= isset($errors['category']) ? 'aria-invalid="true" aria-describedby="category-error"' : '' ?> value="<?= $e($vals['category']) ?>" placeholder="Sedán, camioneta, SUV..." required>
             <?php if (isset($errors['category'])): ?>
@@ -52,7 +68,11 @@ $accion = $vehicle === null ? '/vehiculos' : '/vehiculos/' . $vehicle->getId() .
 
         <!-- El estado inicial solo se elige al registrar; después se cambia desde el listado -->
         <?php if ($vehicle === null): ?>
+<<<<<<< HEAD
             <p class="form-fila">
+=======
+            <section class="form-fila">
+>>>>>>> 035cf0eb1e72d0dd7723c05c1fa64aa4bfa56dc6
                 <label for="status">Estado inicial</label>
                 <select id="status" name="status">
                     <option value="disponible" <?= $vals['status'] === 'disponible' ? 'selected' : '' ?>>Disponible</option>
@@ -62,8 +82,15 @@ $accion = $vehicle === null ? '/vehiculos' : '/vehiculos/' . $vehicle->getId() .
         <?php endif; ?>
     </fieldset>
 
+<<<<<<< HEAD
     <p class="form-acciones">
         <button type="submit">Guardar</button>
         <a href="<?= $e($base) ?>/vehiculos">Cancelar</a>
     </p>
+=======
+    <section class="form-acciones">
+        <button type="submit">Guardar</button>
+        <a href="<?= $e($base) ?>/vehiculos">Cancelar</a>
+    </section>
+>>>>>>> 035cf0eb1e72d0dd7723c05c1fa64aa4bfa56dc6
 </form>
