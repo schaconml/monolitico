@@ -8,7 +8,7 @@ $vals = [
 ];
 ?>
 
-<h1 class="h3 mb-3"><?= $e($title) ?></h1>
+<h1><?= $e($title) ?></h1>
 
 <form method="post" action="<?= $e($base) ?>/clientes" class="formulario-cliente" novalidate accept-charset="UTF-8">
     <input type="hidden" name="_token" value="<?= $e($csrfToken) ?>">
@@ -16,41 +16,41 @@ $vals = [
     <fieldset>
         <legend>Datos del cliente</legend>
 
-        <section class="form-fila">
-            <label for="name" class="form-label">Nombre completo</label>
-            <input type="text" id="name" name="name" class="form-control <?= isset($errors['name']) ? 'is-invalid' : '' ?>" value="<?= $e($vals['name']) ?>" required>
+        <p class="form-fila">
+            <label for="name">Nombre completo</label>
+            <input type="text" id="name" name="name" <?= isset($errors['name']) ? 'aria-invalid="true" aria-describedby="name-error"' : '' ?> value="<?= $e($vals['name']) ?>" required>
             <?php if (isset($errors['name'])): ?>
-                <p id="name-error" class="field-error"><?= $e($errors['name']) ?></p>
+                <small id="name-error" class="field-error"><?= $e($errors['name']) ?></small>
             <?php endif; ?>
-        </section>
+        </p>
 
-        <section class="form-fila">
-            <label for="driver_license" class="form-label">Número de licencia</label>
-            <input type="text" id="driver_license" name="driver_license" class="form-control <?= isset($errors['driver_license']) ? 'is-invalid' : '' ?>" value="<?= $e($vals['driver_license']) ?>" required>
+        <p class="form-fila">
+            <label for="driver_license">Número de licencia</label>
+            <input type="text" id="driver_license" name="driver_license" <?= isset($errors['driver_license']) ? 'aria-invalid="true" aria-describedby="driver_license-error"' : '' ?> value="<?= $e($vals['driver_license']) ?>" required>
             <?php if (isset($errors['driver_license'])): ?>
-                <p id="driver_license-error" class="field-error"><?= $e($errors['driver_license']) ?></p>
+                <small id="driver_license-error" class="field-error"><?= $e($errors['driver_license']) ?></small>
             <?php endif; ?>
-        </section>
+        </p>
 
-        <section class="form-fila">
-            <label for="phone" class="form-label">Teléfono</label>
-            <input type="text" id="phone" name="phone" class="form-control <?= isset($errors['phone']) ? 'is-invalid' : '' ?>" value="<?= $e($vals['phone']) ?>" maxlength="50">
+        <p class="form-fila">
+            <label for="phone">Teléfono</label>
+            <input type="text" id="phone" name="phone" <?= isset($errors['phone']) ? 'aria-invalid="true" aria-describedby="phone-error"' : '' ?> value="<?= $e($vals['phone']) ?>" maxlength="50">
             <?php if (isset($errors['phone'])): ?>
-                <p id="phone-error" class="field-error"><?= $e($errors['phone']) ?></p>
+                <small id="phone-error" class="field-error"><?= $e($errors['phone']) ?></small>
             <?php endif; ?>
-        </section>
+        </p>
 
-        <section class="form-fila">
-            <label for="email" class="form-label">Correo electrónico</label>
-            <input type="email" id="email" name="email" class="form-control <?= isset($errors['email']) ? 'is-invalid' : '' ?>" value="<?= $e($vals['email']) ?>">
+        <p class="form-fila">
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" name="email" <?= isset($errors['email']) ? 'aria-invalid="true" aria-describedby="email-error"' : '' ?> value="<?= $e($vals['email']) ?>">
             <?php if (isset($errors['email'])): ?>
-                <p id="email-error" class="field-error"><?= $e($errors['email']) ?></p>
+                <small id="email-error" class="field-error"><?= $e($errors['email']) ?></small>
             <?php endif; ?>
-        </section>
+        </p>
     </fieldset>
 
-    <section class="form-acciones">
-        <button type="submit" class="btn btn-primary">Guardar</button>
-        <a href="<?= $e($base) ?>/clientes" class="btn btn-outline-secondary">Cancelar</a>
-    </section>
+    <p class="form-acciones">
+        <button type="submit">Guardar</button>
+        <a href="<?= $e($base) ?>/clientes">Cancelar</a>
+    </p>
 </form>

@@ -4,13 +4,13 @@ $clienteNombre = $client === null ? '-' : $client->getName();
 $vehiculoNombre = $vehicle === null ? '-' : $vehicle->getBrand() . ' ' . $vehicle->getModel();
 ?>
 
-<h1 class="h3 mb-3"><?= $e($title) ?></h1>
+<h1><?= $e($title) ?></h1>
 
 <?php if (!$reservation->isActive()): ?>
-    <p class="text-muted">Esta reserva ya está completada o cancelada, no puede devolverse.</p>
-    <a href="<?= $e($base) ?>/reservas" class="btn btn-outline-secondary">Volver</a>
+    <p>Esta reserva ya está completada o cancelada, no puede devolverse.</p>
+    <a href="<?= $e($base) ?>/reservas">Volver</a>
 <?php else: ?>
-    <p class="text-muted">Revise los datos y confirme. El vehículo quedará disponible si no tiene otra reserva vigente.</p>
+    <p>Revise los datos y confirme. El vehículo quedará disponible si no tiene otra reserva vigente.</p>
 
     <dl class="detalle-reserva">
         <dt>Vehículo</dt>
@@ -31,7 +31,7 @@ $vehiculoNombre = $vehicle === null ? '-' : $vehicle->getBrand() . ' ' . $vehicl
 
     <form method="post" action="<?= $e($base) ?>/reservas/<?= $e($reservation->getId()) ?>/devolucion" data-confirm="¿Desea registrar la devolución y liberar el vehículo?" accept-charset="UTF-8">
         <input type="hidden" name="_token" value="<?= $e($csrfToken) ?>">
-        <button type="submit" class="btn btn-success">Confirmar devolución</button>
-        <a href="<?= $e($base) ?>/reservas" class="btn btn-outline-secondary">Cancelar</a>
+        <button type="submit">Confirmar devolución</button>
+        <a href="<?= $e($base) ?>/reservas">Cancelar</a>
     </form>
 <?php endif; ?>

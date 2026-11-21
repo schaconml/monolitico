@@ -1,14 +1,14 @@
-<section class="reservas-header mb-3" aria-labelledby="reservas-title">
-    <h1 id="reservas-title" class="h3 mb-0">Reservas</h1>
-    <a href="<?= $e($base) ?>/reservas/crear" class="btn btn-primary">Nueva reserva</a>
-</section>
+<header class="reservas-header">
+    <h1>Reservas</h1>
+    <a href="<?= $e($base) ?>/reservas/crear">Nueva reserva</a>
+</header>
 
 <?php if (count($reservations) === 0): ?>
-    <p class="text-muted empty-state">No hay reservas registradas.</p>
+    <p class="empty-state">No hay reservas registradas.</p>
 <?php else: ?>
     <section class="table-scroll" aria-labelledby="reservas-table-title">
         <h2 id="reservas-table-title" class="sr-only">Listado de reservas</h2>
-        <table class="table table-striped align-middle">
+        <table>
             <caption>Reservas registradas</caption>
             <thead>
                 <tr>
@@ -40,11 +40,11 @@
                             <?php endif; ?>
                         </td>
                         <td>
-                            <data class="badge text-bg-<?= $e($r->getStatus()->badge()) ?>" value="<?= $e($r->getStatus()->value) ?>"><?= $e($r->getStatus()->label()) ?></data>
+                            <data value="<?= $e($r->getStatus()->value) ?>"><?= $e($r->getStatus()->label()) ?></data>
                         </td>
-                        <td class="text-nowrap">
+                        <td>
                             <?php if ($r->isActive()): ?>
-                                <a href="<?= $e($base) ?>/reservas/<?= $e($r->getId()) ?>/devolucion" class="btn btn-sm btn-outline-success">Registrar devolución</a>
+                                <a href="<?= $e($base) ?>/reservas/<?= $e($r->getId()) ?>/devolucion">Registrar devolución</a>
                             <?php endif; ?>
                         </td>
                     </tr>

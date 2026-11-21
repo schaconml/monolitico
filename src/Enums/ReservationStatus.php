@@ -23,16 +23,4 @@ enum ReservationStatus: string
             self::Cancelled => 'Cancelada',
         };
     }
-
-
-
-    // Color de Bootstrap para la etiqueta del estado
-    public function badge(): string
-    {
-        return match ($this) {
-            self::Active => 'warning',
-            self::Completed => 'success',
-            self::Cancelled => 'secondary',
-        };
-    }
 }

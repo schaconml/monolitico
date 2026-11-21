@@ -23,17 +23,4 @@ enum VehicleStatus: string
             self::Maintenance => 'En mantenimiento',
         };
     }
-
-
-
-
-    // Color de Bootstrap para la etiqueta del estado
-    public function badge(): string
-    {
-        return match ($this) {
-            self::Available => 'success',
-            self::Rented => 'warning',
-            self::Maintenance => 'secondary',
-        };
-    }
 }

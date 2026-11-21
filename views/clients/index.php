@@ -1,14 +1,14 @@
-<section class="clientes-header mb-3" aria-labelledby="clientes-title">
-    <h1 id="clientes-title" class="h3 mb-0">Clientes</h1>
-    <a href="<?= $e($base) ?>/clientes/crear" class="btn btn-primary">Registrar cliente</a>
-</section>
+<header class="clientes-header">
+    <h1>Clientes</h1>
+    <a href="<?= $e($base) ?>/clientes/crear">Registrar cliente</a>
+</header>
 
 <?php if (count($clients) === 0): ?>
-    <p class="text-muted empty-state">No hay clientes registrados.</p>
+    <p class="empty-state">No hay clientes registrados.</p>
 <?php else: ?>
     <section class="table-scroll" aria-labelledby="clientes-table-title">
         <h2 id="clientes-table-title" class="sr-only">Listado de clientes</h2>
-        <table class="table table-striped align-middle">
+        <table>
             <caption>Clientes registrados</caption>
             <thead>
                 <tr>
@@ -28,8 +28,8 @@
                         <td><?= $e($c->getPhone()) ?></td>
                         <td><?= $e($c->getEmail()) ?></td>
                         <td><?= $e($c->getDriverLicense()) ?></td>
-                        <td class="text-nowrap">
-                            <a href="<?= $e($base) ?>/clientes/<?= $e($c->getId()) ?>/historial" class="btn btn-sm btn-outline-secondary">Historial</a>
+                        <td>
+                            <a href="<?= $e($base) ?>/clientes/<?= $e($c->getId()) ?>/historial">Historial</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
