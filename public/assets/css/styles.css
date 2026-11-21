@@ -144,7 +144,6 @@ main {
 .modulos-grid {
     grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
 }
-<<<<<<< HEAD
 .stats-list li,
 .modulos-grid li {
     padding: 1rem;
@@ -157,17 +156,6 @@ h3 {
     margin: 0 0 0.5rem;
     font-size: 1.1rem;
 }
-=======
-.stats-list article,
-.modulos-grid article {
-    height: 100%;
-    padding: 1rem;
-    border: 1px solid #000;
-}
-.stats-list article {
-    text-align: center;
-}
->>>>>>> 035cf0eb1e72d0dd7723c05c1fa64aa4bfa56dc6
 .contador {
     margin: 0 0 0.25rem;
     font-size: 2rem;
@@ -250,10 +238,7 @@ select[aria-invalid="true"] {
 
 /* Errores de campo */
 .field-error {
-<<<<<<< HEAD
     display: block;
-=======
->>>>>>> 035cf0eb1e72d0dd7723c05c1fa64aa4bfa56dc6
     margin: 0.25rem 0 0;
     font-size: 0.875em;
     font-weight: 600;

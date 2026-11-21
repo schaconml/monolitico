@@ -4,7 +4,6 @@
 <form method="get" action="<?= $e($base) ?>/reportes/disponibilidad" class="form-disponibilidad">
     <fieldset>
         <legend class="sr-only">Filtrar disponibilidad por rango de fechas</legend>
-<<<<<<< HEAD
         <p class="form-fila">
             <label for="inicio">Desde</label>
             <input type="date" id="inicio" name="inicio" value="<?= $e($inicio) ?>">
@@ -17,20 +16,6 @@
             <button type="submit">Consultar</button>
             <a href="<?= $e($base) ?>/reportes/disponibilidad">Limpiar</a>
         </p>
-=======
-        <section class="form-fila">
-            <label for="inicio">Desde</label>
-            <input type="date" id="inicio" name="inicio" value="<?= $e($inicio) ?>">
-        </section>
-        <section class="form-fila">
-            <label for="fin">Hasta</label>
-            <input type="date" id="fin" name="fin" value="<?= $e($fin) ?>">
-        </section>
-        <section class="form-fila form-acciones">
-            <button type="submit">Consultar</button>
-            <a href="<?= $e($base) ?>/reportes/disponibilidad">Limpiar</a>
-        </section>
->>>>>>> 035cf0eb1e72d0dd7723c05c1fa64aa4bfa56dc6
     </fieldset>
 </form>
 

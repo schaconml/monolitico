@@ -20,11 +20,7 @@ $vals = [
         <fieldset>
             <legend>Datos de la reserva</legend>
 
-<<<<<<< HEAD
             <p class="form-fila">
-=======
-            <section class="form-fila">
->>>>>>> 035cf0eb1e72d0dd7723c05c1fa64aa4bfa56dc6
                 <label for="client_id">Cliente</label>
                 <select id="client_id" name="client_id" <?= isset($errors['client_id']) ? 'aria-invalid="true" aria-describedby="client_id-error"' : '' ?> required>
                     <option value="">Seleccione un cliente...</option>
@@ -39,11 +35,7 @@ $vals = [
                 <?php endif; ?>
             </p>
 
-<<<<<<< HEAD
             <p class="form-fila">
-=======
-            <section class="form-fila">
->>>>>>> 035cf0eb1e72d0dd7723c05c1fa64aa4bfa56dc6
                 <label for="vehicle_id">Vehículo</label>
                 <select id="vehicle_id" name="vehicle_id" <?= isset($errors['vehicle_id']) ? 'aria-invalid="true" aria-describedby="vehicle_id-error"' : '' ?> required>
                     <option value="">Seleccione un vehículo...</option>
@@ -58,11 +50,7 @@ $vals = [
                 <?php endif; ?>
             </p>
 
-<<<<<<< HEAD
             <p class="form-fila">
-=======
-            <section class="form-fila">
->>>>>>> 035cf0eb1e72d0dd7723c05c1fa64aa4bfa56dc6
                 <label for="start_date">Fecha de inicio</label>
                 <input type="date" id="start_date" name="start_date" <?= isset($errors['start_date']) ? 'aria-invalid="true" aria-describedby="start_date-error"' : '' ?> value="<?= $e($vals['start_date']) ?>" min="<?= $e($hoy ?? '') ?>" required>
                 <?php if (isset($errors['start_date'])): ?>
@@ -70,11 +58,7 @@ $vals = [
                 <?php endif; ?>
             </p>
 
-<<<<<<< HEAD
             <p class="form-fila">
-=======
-            <section class="form-fila">
->>>>>>> 035cf0eb1e72d0dd7723c05c1fa64aa4bfa56dc6
                 <label for="end_date">Fecha de fin</label>
                 <input type="date" id="end_date" name="end_date" <?= isset($errors['end_date']) ? 'aria-invalid="true" aria-describedby="end_date-error"' : '' ?> value="<?= $e($vals['end_date']) ?>" required>
                 <?php if (isset($errors['end_date'])): ?>
@@ -83,16 +67,9 @@ $vals = [
             </p>
         </fieldset>
 
-<<<<<<< HEAD
         <p class="form-acciones">
             <button type="submit">Guardar reserva</button>
             <a href="<?= $e($base) ?>/reservas">Cancelar</a>
         </p>
-=======
-        <section class="form-acciones">
-            <button type="submit">Guardar reserva</button>
-            <a href="<?= $e($base) ?>/reservas">Cancelar</a>
-        </section>
->>>>>>> 035cf0eb1e72d0dd7723c05c1fa64aa4bfa56dc6
     </form>
 <?php endif; ?>
