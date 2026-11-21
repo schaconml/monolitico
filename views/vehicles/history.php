@@ -1,19 +1,19 @@
-<h1 class="h3 mb-3">Historial: <?= $e($vehicle->getBrand() . ' ' . $vehicle->getModel()) ?></h1>
+<h1>Historial: <?= $e($vehicle->getBrand() . ' ' . $vehicle->getModel()) ?></h1>
 
-<p class="text-muted">
+<p>
     Año <?= $e($vehicle->getYear()) ?> · <?= $e($vehicle->getCategory()) ?>
-    <data class="badge text-bg-<?= $e($vehicle->getStatus()->badge()) ?>" value="<?= $e($vehicle->getStatus()->value) ?>"><?= $e($vehicle->getStatus()->label()) ?></data>
+    <data value="<?= $e($vehicle->getStatus()->value) ?>"><?= $e($vehicle->getStatus()->label()) ?></data>
 </p>
 
-<a href="<?= $e($base) ?>/vehiculos" class="btn btn-outline-secondary btn-sm mb-3">Volver a vehículos</a>
+<a href="<?= $e($base) ?>/vehiculos">Volver a vehículos</a>
 
 <!-- RF-08: todas las reservas del vehículo, del más reciente al más antiguo -->
 <?php if (count($reservations) === 0): ?>
-    <p class="text-muted empty-state">El vehículo no tiene reservas registradas.</p>
+    <p class="empty-state">El vehículo no tiene reservas registradas.</p>
 <?php else: ?>
     <section class="table-scroll" aria-labelledby="historial-vehiculo-title">
         <h2 id="historial-vehiculo-title" class="sr-only">Historial de reservas del vehículo</h2>
-        <table class="table table-striped align-middle">
+        <table>
             <caption>Reservas de <?= $e($vehicle->getBrand() . ' ' . $vehicle->getModel()) ?></caption>
             <thead>
                 <tr>
@@ -41,7 +41,7 @@
                             <?php endif; ?>
                         </td>
                         <td>
-                            <data class="badge text-bg-<?= $e($r->getStatus()->badge()) ?>" value="<?= $e($r->getStatus()->value) ?>"><?= $e($r->getStatus()->label()) ?></data>
+                            <data value="<?= $e($r->getStatus()->value) ?>"><?= $e($r->getStatus()->label()) ?></data>
                         </td>
                     </tr>
                 <?php endforeach; ?>
